@@ -11,6 +11,8 @@ python版本3.5
 
 3.数据库用的sqlite3,orm用的是flask-sqlalchemy
 
+4.前端用的bootstrap
+
 启动方法
 
 1.命令行切换至app目录下，安装相应扩展包，pip install -r requirement.txt
