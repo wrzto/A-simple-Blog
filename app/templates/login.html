@@ -4,6 +4,7 @@
 
 {% block content %}
   <form action="{{ url_for('login',next=next) }}" class="form-horizontal" method="post">
+    <input name=_csrf_token type=hidden value="{{ csrf_token() }}">
     <div class="form-group">
       <label for="password" class="col-sm-2 control-label">Password</label>
       <div class="col-sm-6">
