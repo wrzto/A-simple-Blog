@@ -4,6 +4,7 @@
 
 {% block content %}
   <form action="{{ url_for('create') }}" class="form-horizontal" method="post">
+    <input name=_csrf_token type=hidden value="{{ csrf_token() }}">
     <div class="form-group">
       <label for="title" class="col-sm-2 control-label">博文标题</label>
       <div class="col-sm-10">
