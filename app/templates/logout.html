@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content_title %}用户登出{% endblock %}
+
+{% block content %}
+  <p>点击按钮登出本站.</p>
+  <form action="{{ url_for('logout') }}" class="form-horizontal" method="post">
+    <button class="btn btn-primary" type="submit">登出</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %} 
+{% import "_macros.html" as macros %} 
+{% block content_title %}{% if is_draft %}草稿箱{% else %}博文列表{% endif %}{% endblock %} 
+{% block content %}
+    {% for post in posts %}
+    <h3>
+        <a href="{{ url_for('detail',post_id=post.id ) }}">{{ post.title }}</a>
+    </h3>
+    <p>Created {{ moment(post.timestamp).format('LLL') }}&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ url_for('posts',category_id=post.category.id) }}"><span class="label label-info">{{ post.category.name }}</span></a></p>
+    {% else %}
+    <p>空空如也，还不快去写!!!</p>
+    {% endfor %} {% if pagination %}
+    <div class="pagination">
+      {% if is_draft %} 
+      {{ macros.pagination_widget(pagination, 'draft') }} 
+      {% else %} 
+      {{ macros.pagination_widget(pagination, 'index') }} 
+      {% endif %}
+    </div>
+{% endif %} 
+{% endblock %}

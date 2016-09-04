@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content_title %}{{ post.title }}{% endblock %}
+
+{% block extra_header %}
+  {% if session.logged_in %}
+    <li><a href="{{ url_for('edit',post_id=post.id) }}">编辑当前博文</a></li>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  <p>Created {{ moment(post.timestamp).format('LLL') }}&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ url_for('posts',category_id=post.category.id) }}"><span class="label label-info">{{ post.category.name }}</span></a></p>
+  {{ post.html_content }}
+{% endblock %}

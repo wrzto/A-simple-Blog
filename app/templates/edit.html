@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content_title %}编辑博文{% endblock %}
+
+{% block content %}
+  <form action="{{ url_for('edit', post_id=post.id) }}" class="form-horizontal" method="post">
+    <div class="form-group">
+      <label for="title" class="col-sm-2 control-label">博文标题</label>
+      <div class="col-sm-10">
+        <input class="form-control" id="title" name="title" type="text" value="{{ request.form.get('title', post.title) }}">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="Content" class="col-sm-2 control-label">博文内容</label>
+      <div class="col-sm-10">
+        <textarea class="form-control" id="content" name="content" style="height: 300px;">{{ request.form.get('content', post.content) }}</textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <div class="checkbox">
+          <label>
+            <input {% if post.published %}checked="checked" {% endif %}name="published" type="checkbox"> 发布?
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="category" class="col-sm-2 control-label">博文分类</label>
+      <div class="col-sm-2">
+        <select class="form-control" id="category" name="category" >
+          {% for category in categories %}
+          <option value={{ category.id }} {% if post.category == category %} selected="selected" {% endif %}>{{ category.name }}</option> 
+          {% endfor %}
+          </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button class="btn btn-primary" type="submit">保存</button>
+        <a class="btn btn-default" href="{{ url_for('index') }}">取消</a>
+      </div>
+    </div>
+  </form>
+{% endblock %}
