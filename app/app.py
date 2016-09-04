@@ -26,7 +26,7 @@ basedir=os.path.abspath(os.path.dirname(__file__))
 #将生成的值替换PASSWORD_HASH
 PASSWORD_HASH = 'pbkdf2:sha1:1000$80Oc5MyH$74a5c46815e27f6282b744c6590b012cf9f23b56'
 DEBUG=True
-SECRET_KEY='wrzto'
+SECRET_KEY="(\x8c,\x9c\x1e\xe7y\x05\x98E4\x92\x12'd\xd2\xc4\xcd\x8e3@\xd5\xc15"
 SQLALCHEMY_DATABASE_URI='sqlite:///'+os.path.join(basedir,'data.sqlite')
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 # SQLALCHEMY_COMMIT_ON_TEARDOWN=True
