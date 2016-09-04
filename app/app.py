@@ -72,6 +72,7 @@ def login():
             flash('你已经成功登陆.','success')
             print(request.path)
             return redirect(next_url or url_for('index'))
+        flash('密码错误，请重新输入','danger')
     return render_template('login.html',next=next_url)
 
 '''登出视图函数'''
