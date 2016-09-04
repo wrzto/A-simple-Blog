@@ -15,7 +15,7 @@ python版本3.5
 
 启动方法
 
-1.命令行切换至app目录下，安装相应扩展包，pip install -r requirement.txt
+1.命令行切换至app目录下，安装相应扩展包，sudo pip install -r requirement.txt
 
 2.数据库创建
 
