@@ -5,4 +5,5 @@ micawber
 markdown
 flask-moment
 flask-sqlalchemy
-BeautifulSoup
+BeautifulSoup4
+flask-wtf
