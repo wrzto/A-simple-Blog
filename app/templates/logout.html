@@ -5,6 +5,7 @@
 {% block content %}
   <p>点击按钮登出本站.</p>
   <form action="{{ url_for('logout') }}" class="form-horizontal" method="post">
+    <input name=_csrf_token type=hidden value="{{ csrf_token() }}">
     <button class="btn btn-primary" type="submit">登出</button>
   </form>
 {% endblock %}
