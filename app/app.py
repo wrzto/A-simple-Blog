@@ -21,6 +21,9 @@ from micawber.cache import Cache as OEmbedCache
 '''配置内容'''
 basedir=os.path.abspath(os.path.dirname(__file__))
 #此处设置密码的hash值用于登陆，此处默认密码是'123'
+#from werkzeug.security import generate_password_hash
+#generate_password_hash('你的密码')
+#将生成的值替换PASSWORD_HASH
 PASSWORD_HASH = 'pbkdf2:sha1:1000$80Oc5MyH$74a5c46815e27f6282b744c6590b012cf9f23b56'
 DEBUG=True
 SECRET_KEY='wrzto'
