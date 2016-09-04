@@ -7,6 +7,7 @@ from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
 from flask_admin.contrib import sqla
+from flask_wtf import Form
 import os
 import hashlib
 import functools
@@ -226,7 +227,7 @@ def posts():
 '''添加CSRF Protection'''
 @app.before_request
 def csrf_protect():
-    if request.method == "POST":
+    if request.method == "POST" and '/admin' not in request.path:
         token = session.pop('_csrf_token', None)
         if not token or token != request.form.get('_csrf_token'):
             abort(404)
@@ -240,11 +241,13 @@ app.jinja_env.globals['csrf_token'] = generate_csrf_token
 
 '''后台管理'''
 class PostAdmin(sqla.ModelView):
+    form_base_class = Form
     column_display_pk = True
     can_create = False
     column_list = ('id','title','category','published')
 
 class CategoryAdmin(sqla.ModelView):
+    form_base_class = Form
     column_display_pk = True
     can_create = True
     #Category模型中不能定义__init__方法，否则无法在admin创建category对象
