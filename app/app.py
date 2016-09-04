@@ -6,8 +6,9 @@ from werkzeug.security import check_password_hash
 from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
-from flask.ext.admin.contrib import sqla
+from flask_admin.contrib import sqla
 import os
+import hashlib
 import functools
 from datetime import datetime
 '''导入支持markdown文本内容的相关库'''
@@ -72,7 +73,11 @@ def login():
             flash('你已经成功登陆.','success')
             print(request.path)
             return redirect(next_url or url_for('index'))
+<<<<<<< HEAD
+        flash('密码错误，请重新输入.','danger')
+=======
         flash('密码错误，请重新输入','danger')
+>>>>>>> 16cb7ed35a3537b80b4096f08f48be0f80aed9ee
     return render_template('login.html',next=next_url)
 
 '''登出视图函数'''
@@ -217,6 +222,21 @@ def posts():
     if posts:
         return render_template('posts.html',posts=posts)
     return redirect(url_for('index'))
+
+'''添加CSRF Protection'''
+@app.before_request
+def csrf_protect():
+    if request.method == "POST":
+        token = session.pop('_csrf_token', None)
+        if not token or token != request.form.get('_csrf_token'):
+            abort(404)
+            
+def generate_csrf_token():
+    if '_csrf_token' not in session:
+        session['_csrf_token'] = hashlib.sha1(os.urandom(24)).hexdigest()
+    return session['_csrf_token']
+app.jinja_env.globals['csrf_token'] = generate_csrf_token    
+
 
 '''后台管理'''
 class PostAdmin(sqla.ModelView):
