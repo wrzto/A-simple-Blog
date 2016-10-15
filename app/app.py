@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 #-*-coding:utf-8-*-
 
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8') #解决在linux下编码错误的问题
+
 from flask import Flask,render_template,url_for,session,redirect,request,flash,abort,Markup
 from werkzeug.security import check_password_hash
 from flask_moment import Moment
