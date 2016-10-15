@@ -1,7 +1,7 @@
 # A-simple-Blog
 利用flask搭建的一个简单的个人博客网站
 
-python版本3.5
+python版本3.5(实测python2版本也可用)
 
 目前版本只是实现了个人博客功能
 
